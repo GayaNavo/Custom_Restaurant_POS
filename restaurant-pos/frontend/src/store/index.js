@@ -26,6 +26,10 @@ const initialState = {
   orders: {
     list: [],
     loading: false
+  },
+  cart: {
+    items: [],
+    isOpen: false
   }
 };
 
@@ -50,6 +54,65 @@ const rootReducer = (state = initialState, action) => {
           user: null,
           isAuthenticated: false
         }
+      };
+    case 'ADD_TO_CART':
+      const item = action.payload;
+      const existItem = state.cart.items.find((x) => x._id === item._id);
+      if (existItem) {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            items: state.cart.items.map((x) =>
+              x._id === existItem._id ? { ...x, qty: (x.qty || 1) + 1 } : x
+            ),
+          },
+        };
+      } else {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            items: [...state.cart.items, { ...item, qty: 1 }],
+          },
+        };
+      }
+    case 'REMOVE_FROM_CART':
+      const itemToDec = state.cart.items.find((x) => x._id === action.payload);
+      if (itemToDec.qty > 1) {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            items: state.cart.items.map((x) =>
+              x._id === action.payload ? { ...x, qty: x.qty - 1 } : x
+            ),
+          },
+        };
+      } else {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            items: state.cart.items.filter((x) => x._id !== action.payload),
+          },
+        };
+      }
+    case 'TOGGLE_CART':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          isOpen: !state.cart.isOpen,
+        },
+      };
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          items: [],
+        },
       };
     default:
       return state;

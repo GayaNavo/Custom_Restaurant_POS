@@ -6,12 +6,17 @@ const Stock = () => {
   const [formData, setFormData] = useState({
     name: '',
     type: 'inventory',
+    description: '',
+    brand: '',
+    category: '',
+    image: '',
     quantity: 0,
     unit: 'pieces',
     minLevel: 0,
     maxLevel: 1000,
     costPrice: 0,
     sellingPrice: 0,
+    originalPrice: 0,
     supplier: '',
     isActive: true
   });
@@ -80,12 +85,17 @@ const Stock = () => {
     setFormData({
       name: '',
       type: 'inventory',
+      description: '',
+      brand: '',
+      category: '',
+      image: '',
       quantity: 0,
       unit: 'pieces',
       minLevel: 0,
       maxLevel: 1000,
       costPrice: 0,
       sellingPrice: 0,
+      originalPrice: 0,
       supplier: '',
       isActive: true
     });
@@ -134,6 +144,43 @@ const Stock = () => {
                   <option value="non-inventory">Non-Inventory</option>
                 </select>
               </div>
+            </div>
+            
+            <div className="form-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <div className="form-group" style={{ flex: 1 }}>
+                <label htmlFor="brand" className="form-label">Brand</label>
+                <input
+                  type="text"
+                  id="brand"
+                  name="brand"
+                  className="form-input"
+                  value={formData.brand}
+                  onChange={onChange}
+                />
+              </div>
+              <div className="form-group" style={{ flex: 1 }}>
+                <label htmlFor="category" className="form-label">Category</label>
+                <input
+                  type="text"
+                  id="category"
+                  name="category"
+                  className="form-input"
+                  value={formData.category}
+                  onChange={onChange}
+                />
+              </div>
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="description" className="form-label">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                className="form-input"
+                rows="2"
+                value={formData.description}
+                onChange={onChange}
+              ></textarea>
             </div>
             
             <div className="form-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -211,6 +258,20 @@ const Stock = () => {
                 />
               </div>
               
+              <div className="form-group" style={{ flex: 1 }}>
+                <label htmlFor="originalPrice" className="form-label">Original Price ($)</label>
+                <input
+                  type="number"
+                  id="originalPrice"
+                  name="originalPrice"
+                  className="form-input"
+                  value={formData.originalPrice}
+                  onChange={onChange}
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+
               <div className="form-group" style={{ flex: 1 }}>
                 <label htmlFor="sellingPrice" className="form-label">Selling Price ($)</label>
                 <input

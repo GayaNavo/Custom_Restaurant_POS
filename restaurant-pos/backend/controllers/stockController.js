@@ -34,7 +34,7 @@ const getStockItem = async (req, res) => {
 // @access  Private
 const createStockItem = async (req, res) => {
   try {
-    const { name, type, unit, costPrice, sellingPrice } = req.body;
+    const { name, type, description, brand, category, image, unit, costPrice, sellingPrice, originalPrice, supplier } = req.body;
 
     // Check if stock item already exists
     const existingItem = await StockItem.findOne({ name });
@@ -46,9 +46,15 @@ const createStockItem = async (req, res) => {
     const stockItem = new StockItem({
       name,
       type,
+      description,
+      brand,
+      category,
+      image,
       unit,
       costPrice,
-      sellingPrice
+      sellingPrice,
+      originalPrice,
+      supplier
     });
 
     const createdStockItem = await stockItem.save();

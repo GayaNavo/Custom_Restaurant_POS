@@ -1,4 +1,17 @@
 const MenuItem = require('../models/MenuItem');
+const StockItem = require('../models/StockItem');
+
+// @desc    Get menu items from non-inventory stock (for tablet)
+// @route   GET /api/menu/tablet
+// @access  Private
+const getTabletMenuItems = async (req, res) => {
+  try {
+    const items = await StockItem.find({ type: 'non-inventory', isActive: true }).sort({ category: 1, name: 1 });
+    res.json(items);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 // @desc    Get all menu items
 // @route   GET /api/menu
@@ -110,6 +123,7 @@ module.exports = {
   getMenuItems,
   getAllMenuItems,
   getMenuItem,
+  getTabletMenuItems,
   createMenuItem,
   updateMenuItem,
   deleteMenuItem

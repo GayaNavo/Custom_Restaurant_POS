@@ -12,6 +12,22 @@ const stockItemSchema = new mongoose.Schema({
     enum: ['inventory', 'non-inventory'],
     default: 'inventory'
   },
+  description: {
+    type: String,
+    trim: true
+  },
+  brand: {
+    type: String,
+    trim: true
+  },
+  category: {
+    type: String,
+    trim: true
+  },
+  image: {
+    type: String,
+    trim: true
+  },
   quantity: {
     type: Number,
     default: 0,
@@ -32,6 +48,10 @@ const stockItemSchema = new mongoose.Schema({
   costPrice: {
     type: Number,
     required: true,
+    min: 0
+  },
+  originalPrice: {
+    type: Number,
     min: 0
   },
   sellingPrice: {

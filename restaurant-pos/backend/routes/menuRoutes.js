@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getMenuItems, getAllMenuItems, getMenuItem, createMenuItem, updateMenuItem, deleteMenuItem } = require('../controllers/menuController');
+const { getMenuItems, getAllMenuItems, getMenuItem, getTabletMenuItems, createMenuItem, updateMenuItem, deleteMenuItem } = require('../controllers/menuController');
 const auth = require('../middleware/authMiddleware');
 const { checkPermission, PERMISSIONS } = require('../middleware/permissionMiddleware');
 
 // Apply auth middleware to all routes
 router.use(auth);
+
+// Tablet menu route (fetches from non-inventory stock)
+router.route('/tablet').get(getTabletMenuItems);
 
 // Public route for active menu items
 router.route('/').get(getMenuItems);

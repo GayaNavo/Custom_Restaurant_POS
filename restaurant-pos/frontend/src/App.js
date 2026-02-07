@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Customers from './pages/Customers';
 import Users from './pages/Users';
 import Menu from './pages/Menu';
+import TabletMenu from './pages/TabletMenu';
 import Stock from './pages/Stock';
 import Orders from './pages/Orders';
 import Receipts from './pages/Receipts';
@@ -28,6 +29,7 @@ function App() {
             <Route path="/customers" element={<Customers />} />
             <Route path="/users" element={<Users />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/tablet-menu" element={<TabletMenu />} />
             <Route path="/stock" element={<Stock />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/receipts" element={<Receipts />} />
