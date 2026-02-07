@@ -18,7 +18,12 @@ const receiptRoutes = require('./routes/receiptsRoutes');
 const app = express();
 
 // Connect to database
-connectDB();
+connectDB().then(() => {
+  console.log('Database connection established successfully');
+}).catch((error) => {
+  console.error('Failed to connect to database:', error);
+  process.exit(1);
+});
 
 // Security middlewares
 app.use(helmet());

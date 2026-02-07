@@ -5,6 +5,7 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,42 +18,64 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card" style={{ maxWidth: '400px', margin: '2rem auto', backgroundColor: '#F8E8C8', border: '2px solid #4F7F2F', textAlign: 'center' }}>
-        <h2 style={{ color: '#1F5F3B' }}>Login to Restaurant POS</h2>
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <label htmlFor="email" className="form-label" style={{ color: '#1F5F3B' }}>Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="form-input"
-              style={{ backgroundColor: 'white', borderColor: '#4F7F2F', color: '#1F5F3B' }}
-              value={formData.email}
-              onChange={onChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="password" className="form-label" style={{ color: '#1F5F3B' }}>Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="form-input"
-              style={{ backgroundColor: 'white', borderColor: '#4F7F2F', color: '#1F5F3B' }}
-              value={formData.password}
-              onChange={onChange}
-              required
-            />
-          </div>
-          
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', backgroundColor: '#1F5F3B', border: 'none', padding: '12px' }}>
-            Login
-          </button>
-        </form>
+    <div className="login-page">
+      <div className="login-logo-container">
+        <img src="/logo.png" alt="Patuwa Villa" className="login-logo" />
+      </div>
+      
+      <div className="login-card">
+        <div className="login-card-header">
+          <h2>Sign in to your Account</h2>
+        </div>
+        
+        <div className="login-card-body">
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <label htmlFor="email">User name</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={onChange}
+                required
+              />
+            </div>
+            
+            <div className="forgot-password-link">
+              <a href="#forgot">Forgot Password</a>
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <div className="password-input-container">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={onChange}
+                  required
+                />
+                <button 
+                  type="button" 
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                </button>
+              </div>
+            </div>
+            
+            <button type="submit" className="login-button">
+              Log in
+            </button>
+          </form>
+        </div>
+        
+        <div className="login-card-footer">
+          <p>Version 2.0</p>
+        </div>
       </div>
     </div>
   );
