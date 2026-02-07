@@ -1,0 +1,35 @@
+{
+  "name": "restaurant-pos-system",
+  "version": "1.0.0",
+  "description": "A comprehensive restaurant POS system built with MERN stack",
+  "main": "server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "seed": "node backend/seeder",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/restaurant-pos-system.git"
+  },
+  "keywords": [
+    "pos",
+    "restaurant",
+    "mern",
+    "node",
+    "react",
+    "mongodb"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/restaurant-pos-system/issues"
+  },
+  "homepage": "https://github.com/your-username/restaurant-pos-system#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
